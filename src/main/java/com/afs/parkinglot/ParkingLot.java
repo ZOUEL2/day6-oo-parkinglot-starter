@@ -1,15 +1,21 @@
 package com.afs.parkinglot;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class ParkingLot {
 
     private final int capacity;
 
-    private HashMap<PlateTicket, Car> carsInParking = new HashMap<>();
+    private Map<PlateTicket, Car> carsInParking;
+
+    public ParkingLot() {
+        this(10);
+    }
 
     public ParkingLot(int capacity) {
         this.capacity = capacity;
+        this.carsInParking = new HashMap<>();
     }
 
     public PlateTicket park(Car car) {
