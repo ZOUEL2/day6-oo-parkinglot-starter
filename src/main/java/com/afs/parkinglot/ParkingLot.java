@@ -1,5 +1,6 @@
 package com.afs.parkinglot;
 
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,6 +10,9 @@ public class ParkingLot {
 
     private Map<PlateTicket, Car> carsInParking;
 
+    private String lastErrorMessage;
+    private static final String UNRECOGNIZED_PARKING_TICKET = "Unrecognized parking ticket.";
+
     public ParkingLot() {
         this(10);
     }
@@ -16,6 +20,7 @@ public class ParkingLot {
     public ParkingLot(int capacity) {
         this.capacity = capacity;
         this.carsInParking = new HashMap<>();
+        this.lastErrorMessage = null;
     }
 
     public PlateTicket park(Car car) {
@@ -30,6 +35,7 @@ public class ParkingLot {
 
     public Car fetch(PlateTicket plateTicket) {
         if (plateTicket == null || !carsInParking.containsKey(plateTicket)) {
+            lastErrorMessage = UNRECOGNIZED_PARKING_TICKET;
             return null;
         }
         return carsInParking.remove(plateTicket);
@@ -41,5 +47,9 @@ public class ParkingLot {
 
     public int getAvailableSpots() {
         return capacity - carsInParking.size();
+    }
+
+    public String getLastErrorMessage() {
+        return lastErrorMessage;
     }
 }

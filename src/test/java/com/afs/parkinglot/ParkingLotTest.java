@@ -54,7 +54,7 @@ public class ParkingLotTest {
 
 
     @Test
-    void should_not_park_when_parkinglot_is_full() {
+    void should_not_park_when_parkingLot_is_full() {
         // 停满停车场
         parkingLot.park(new Car());
         parkingLot.park(new Car());
@@ -63,9 +63,16 @@ public class ParkingLotTest {
         assertNull(parkingLot.park(new Car()));
     }
 
+    @Test
+    void should_return_error_message_when_fetch_with_unrecognized_ticket() {
+        parkingLot.park(testCar);
+        PlateTicket wrongTicket = new PlateTicket();
 
-
-
+        Car result = parkingLot.fetch(wrongTicket);
+        assertNull(result);
+        // 检查错误信息
+        assertEquals("Unrecognized parking ticket.", parkingLot.getLastErrorMessage());
+    }
 
 
 }
