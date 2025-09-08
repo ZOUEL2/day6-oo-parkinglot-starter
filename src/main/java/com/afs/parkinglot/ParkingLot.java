@@ -12,7 +12,7 @@ public class ParkingLot {
 
     private String lastErrorMessage;
     private static final String UNRECOGNIZED_PARKING_TICKET = "Unrecognized parking ticket.";
-     private static final String NO_AVAILABLE_POSITION = "No available position.";
+    private static final String NO_AVAILABLE_POSITION = "No available position.";
 
 
     public ParkingLot() {
@@ -25,7 +25,12 @@ public class ParkingLot {
         this.lastErrorMessage = null;
     }
 
+    public void clearErrorMessage() {
+        lastErrorMessage = null;
+    }
+
     public PlateTicket park(Car car) {
+        clearErrorMessage();
         if (car == null || isFull()) {
             lastErrorMessage = NO_AVAILABLE_POSITION;
             return null;
@@ -37,6 +42,7 @@ public class ParkingLot {
     }
 
     public Car fetch(PlateTicket plateTicket) {
+        clearErrorMessage();
         if (plateTicket == null || !carsInParking.containsKey(plateTicket)) {
             lastErrorMessage = UNRECOGNIZED_PARKING_TICKET;
             return null;
