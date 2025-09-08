@@ -63,7 +63,18 @@ public class StandardParkingBoyTest  {
 
         assertNull(result);
         assertEquals("Unrecognized parking ticket.", standardParkingBoy.getLastErrorMessage());
+    }
 
+    // Case 5: 使用过的票取车
+    @Test
+    void should_not_fetch_car_with_used_ticket() {
+        PlateTicket ticket = standardParkingBoy.park(testCar);
+        assertEquals(testCar, standardParkingBoy.fetch(ticket));
+
+        Car result = standardParkingBoy.fetch(ticket);
+
+        assertNull(result);
+        assertEquals("Unrecognized parking ticket.", standardParkingBoy.getLastErrorMessage());
     }
 
 
