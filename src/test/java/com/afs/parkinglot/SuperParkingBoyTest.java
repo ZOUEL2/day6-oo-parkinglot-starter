@@ -33,4 +33,16 @@ public class SuperParkingBoyTest {
         assertEquals(testCar, parkingLot1.fetch(ticket));
         assertNull(parkingLot2.fetch(ticket));
     }
+
+    // Case2: 两个停车场都有空位且空置率一致，停在靠前的停车场
+    @Test
+    void should_park_in_first_lot_when_both_lots_have_same_vacancy_rate() {
+      // 初始空置率相同，均为100%
+
+        PlateTicket ticket = superParkingBoy.park(testCar);
+        assertNotNull(ticket);
+        assertEquals(testCar, parkingLot1.fetch(ticket));
+        assertNull(parkingLot2.fetch(ticket));
+    }
+
 }
