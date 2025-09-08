@@ -15,10 +15,6 @@ public class ParkingLot {
     private static final String NO_AVAILABLE_POSITION = "No available position.";
 
 
-    public ParkingLot() {
-        this(10);
-    }
-
     public ParkingLot(int capacity) {
         this.capacity = capacity;
         this.carsInParking = new HashMap<>();
@@ -61,4 +57,9 @@ public class ParkingLot {
     public String getLastErrorMessage() {
         return lastErrorMessage;
     }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
 }
