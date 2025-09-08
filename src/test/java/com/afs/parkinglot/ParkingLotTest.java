@@ -11,7 +11,7 @@ public class ParkingLotTest {
 
     @BeforeEach
     void setUp() {
-        parkingLot = new ParkingLot();
+        parkingLot = new ParkingLot(2);
         testCar = new Car();
     }
 
@@ -53,6 +53,15 @@ public class ParkingLotTest {
     }
 
 
+    @Test
+    void should_not_park_when_parkinglot_is_full() {
+        // 停满停车场
+        parkingLot.park(new Car());
+        parkingLot.park(new Car());
+
+        assertTrue(parkingLot.isFull());
+        assertNull(parkingLot.park(new Car()));
+    }
 
 
 

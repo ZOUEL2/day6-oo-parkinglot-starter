@@ -19,13 +19,13 @@ public class ParkingLot {
     }
 
     public PlateTicket park(Car car) {
-        if (capacity > 0) {
-            PlateTicket plateTicket = new PlateTicket();
-            carsInParking.put(plateTicket, car);
-            return plateTicket;
-        } else {
+        if (car == null || isFull()) {
             return null;
         }
+        PlateTicket plateTicket = new PlateTicket();
+        carsInParking.put(plateTicket, car);
+        return plateTicket;
+
     }
 
     public Car fetch(PlateTicket plateTicket) {
@@ -35,4 +35,11 @@ public class ParkingLot {
         return carsInParking.remove(plateTicket);
     }
 
+    public boolean isFull() {
+        return carsInParking.size() >= capacity;
+    }
+
+    public int getAvailableSpots() {
+        return capacity - carsInParking.size();
+    }
 }
