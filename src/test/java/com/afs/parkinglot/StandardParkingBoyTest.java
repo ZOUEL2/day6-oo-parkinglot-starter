@@ -25,12 +25,21 @@ public class StandardParkingBoyTest  {
         testCar = new Car();
     }
 
-    // Case 1: 两个停车场都有空位，停在第一个
+    // Case 1: 两个停车场都有空位，停在靠前的停车场
     @Test
     void should_park_in_first_lot_when_given_both_lots_have_space() {
         PlateTicket ticket = standardParkingBoy.park(testCar);
         assertNotNull(ticket);
         assertEquals(testCar, parkingLot1.fetch(ticket));
+    }
+
+    // Case 2: 第一个停车场满了，停在第二个
+    @Test
+    void should_park_in_another_lot_when_given_first_lot_is_full() {
+        parkingLot1.park(new Car());
+        PlateTicket ticket = standardParkingBoy.park(testCar);
+        assertNotNull(ticket);
+        assertEquals(testCar, parkingLot2.fetch(ticket));
     }
 
 }
