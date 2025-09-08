@@ -34,13 +34,24 @@ public class ParkingLotTest {
     }
 
     @Test
-    void shouldNotFetchCarWithWrongTicket() {
+    void should_not_fetch_car_with_wrong_and_not_ticket() {
         parkingLot.park(testCar);
         PlateTicket wrongTicket = new PlateTicket();
 
         assertNull(parkingLot.fetch(wrongTicket));
         assertNull(parkingLot.fetch(null));
     }
+
+    @Test
+    void should_not_fetch_car_with_used_ticket() {
+        PlateTicket plateTicket = parkingLot.park(testCar);
+
+        Car fetchedCar = parkingLot.fetch(plateTicket);
+        assertEquals(testCar, fetchedCar);
+
+        assertNull(parkingLot.fetch(plateTicket));
+    }
+
 
 
 
