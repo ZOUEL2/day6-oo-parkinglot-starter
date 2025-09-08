@@ -7,8 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class StandardParkingBoyTest  {
     private ParkingLot parkingLot1;
@@ -53,7 +52,20 @@ public class StandardParkingBoyTest  {
 
         assertEquals(car1, standardParkingBoy.fetch(ticket1));
         assertEquals(car2, standardParkingBoy.fetch(ticket2));
+    }
+
+    // Case 4: 管理两个停车场，用错误的票取车
+    @Test
+    void should_not_fetch_car_with_wrong_ticket() {
+        PlateTicket unrecognizedTicket = new PlateTicket();
+
+        Car result = standardParkingBoy.fetch(unrecognizedTicket);
+
+        assertNull(result);
+        assertEquals("Unrecognized parking ticket.", standardParkingBoy.getLastErrorMessage());
 
     }
+
+
 
 }
