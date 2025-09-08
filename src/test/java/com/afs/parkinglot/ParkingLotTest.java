@@ -70,8 +70,19 @@ public class ParkingLotTest {
 
         Car result = parkingLot.fetch(wrongTicket);
         assertNull(result);
-        // 检查错误信息
         assertEquals("Unrecognized parking ticket.", parkingLot.getLastErrorMessage());
+    }
+
+    @Test
+    void should_return_error_message_when_park_in_full_parking_lot() {
+        parkingLot.park(new Car());
+        parkingLot.park(new Car());
+
+        assertTrue(parkingLot.isFull());
+        Car newCar = new Car();
+        PlateTicket ticket = parkingLot.park(newCar);
+        assertNull(ticket);
+        assertEquals("No available position.", parkingLot.getLastErrorMessage());
     }
 
 

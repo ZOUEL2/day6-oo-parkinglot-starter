@@ -12,6 +12,8 @@ public class ParkingLot {
 
     private String lastErrorMessage;
     private static final String UNRECOGNIZED_PARKING_TICKET = "Unrecognized parking ticket.";
+     private static final String NO_AVAILABLE_POSITION = "No available position.";
+
 
     public ParkingLot() {
         this(10);
@@ -25,6 +27,7 @@ public class ParkingLot {
 
     public PlateTicket park(Car car) {
         if (car == null || isFull()) {
+            lastErrorMessage = NO_AVAILABLE_POSITION;
             return null;
         }
         PlateTicket plateTicket = new PlateTicket();
