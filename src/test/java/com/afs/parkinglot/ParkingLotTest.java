@@ -33,6 +33,17 @@ public class ParkingLotTest {
         assertEquals(car2, parkingLot.fetch(ticket2));
     }
 
+    @Test
+    void shouldNotFetchCarWithWrongTicket() {
+        parkingLot.park(testCar);
+        PlateTicket wrongTicket = new PlateTicket();
+
+        assertNull(parkingLot.fetch(wrongTicket));
+        assertNull(parkingLot.fetch(null));
+    }
+
+
+
 
 
 

@@ -24,13 +24,13 @@ public class ParkingLot {
             carsInParking.put(plateTicket, car);
             return plateTicket;
         } else {
-            throw new RuntimeException("车位已满");
+            return null;
         }
     }
 
     public Car fetch(PlateTicket plateTicket) {
         if (plateTicket == null || !carsInParking.containsKey(plateTicket)) {
-            throw new RuntimeException("无效的车票");
+            return null;
         }
         return carsInParking.remove(plateTicket);
     }
