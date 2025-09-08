@@ -42,4 +42,18 @@ public class StandardParkingBoyTest  {
         assertEquals(testCar, parkingLot2.fetch(ticket));
     }
 
+    // Case 3: 每个停车场都有车，用正确的票取车
+    @Test
+    void should_fetch_car_with_correct_ticket_from_both_lots() {
+        Car car1 = new Car();
+        Car car2 = new Car();
+
+        PlateTicket ticket1 = standardParkingBoy.park(car1);
+        PlateTicket ticket2 = standardParkingBoy.park(car2);
+
+        assertEquals(car1, standardParkingBoy.fetch(ticket1));
+        assertEquals(car2, standardParkingBoy.fetch(ticket2));
+
+    }
+
 }
