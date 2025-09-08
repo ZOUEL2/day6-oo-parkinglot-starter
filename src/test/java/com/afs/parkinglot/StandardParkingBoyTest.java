@@ -77,6 +77,18 @@ public class StandardParkingBoyTest  {
         assertEquals("Unrecognized parking ticket.", standardParkingBoy.getLastErrorMessage());
     }
 
+    // Case 6: 两个停车场都满了，无法停车
+    @Test
+    void should_not_park_when_both_lots_are_full() {
+        parkingLot1.park(new Car());
+        parkingLot2.park(new Car());
+
+        PlateTicket ticket = standardParkingBoy.park(testCar);
+
+        assertNull(ticket);
+        assertEquals("No available position.", standardParkingBoy.getLastErrorMessage());
+    }
+
 
 
 }
